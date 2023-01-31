@@ -7,6 +7,9 @@
 #Current versions of these training materials are available at https://www.helsinki.fi/en/researchgroups/statistical-ecology/software/hmscCodes
 #see readme file for detail
 ##################################################################################################################################################
+#The fitted model (models_thin_1000_samples_250_chains_4.Rdata) 
+#can be downloaded from https://etsin.fairdata.fi/dataset/46f59d1b-d925-4cf8-893e-37e50742a291
+
 load("models_thin_1000_samples_250_chains_4.Rdata")
 
 library(Hmsc)
