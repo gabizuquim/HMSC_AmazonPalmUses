@@ -1,11 +1,9 @@
-#S3
-#setwd("") # set directory to the folder where the folders "data", "models" and "panels" are
+##add metadata####
 library(Hmsc)
+load(file = "unfitted_models") #models, modelnames
 
-load(file = "models/unfitted_models") #models, modelnames
-
-#samples_list = c(5,250,250,250,250,250)
-#thin_list = c(1,1,10,100,1000,10000)
+#samples_list = c(250)
+#thin_list = c(1000)
 #nChains = 4
 
 samples_list = 250
