@@ -67,5 +67,5 @@ m1 = Hmsc(Y=Ypa_AD, XData = X,  XFormula = XFormula,
 models = list(m1)
 modelnames = c("presence_absence_ADULT")
 
-save(models,modelnames,file = "unfitted_models")
+save(models,modelnames,file = "unfitted_models.Rdata")
 
