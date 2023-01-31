@@ -13,6 +13,10 @@ library(Hmsc)
   R2 = MF$TjurR2
   for(k in 1:m$ns)
   {VPr$vals[,k] = R2[k]*VPr$vals[,k]}
-  
+
+#combine the variation partitioning values with use diversity trait data for each species
+#var part values are scaled by Tjur´s values
 VPr_useintensity = data.frame(m$TrData$use_intensity,t(VPr$vals))
-write.csv2(VPr_useintensity, "VPr_useintensity.csv")
+Write.csv2(VPr_useintensity, "VPr_useintensity.csv")
+
+
