@@ -1,10 +1,6 @@
 #METADATA
 
 library(Hmsc)
-library(colorspace)
-library(corrplot)
-library(writexl)
-
 load("models_thin_1000_samples_250_chains_4.Rdata")
 
 library(Hmsc)
