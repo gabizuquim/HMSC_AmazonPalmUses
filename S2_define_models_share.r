@@ -1,6 +1,7 @@
 #S2
 library(Hmsc)
 load("allData.R") #S, X, Y_Adult, Y_Juvenile, Tr, P
+####For the purpose of the paper CITE, Juvenile data was not used
 
 #### X$HAND_50 has 13 missing values. Exclude these rows from S, X and Y! ####
 
