@@ -5,7 +5,7 @@
 #Codes by Otso Ovaskainen, Mirkka Jones and Gabriela Zuquim
 #The codes were modified from November 2020 Hmsc course scripts. 
 #Current versions of these training materials are available at https://www.helsinki.fi/en/researchgroups/statistical-ecology/software/hmscCodes
-#see readme file for detail
+#see readme.md file for details
 ##################################################################################################################################################
 
 library(Hmsc)
