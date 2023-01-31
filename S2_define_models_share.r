@@ -9,15 +9,12 @@ missingvalues = which(is.na(X$HAND_50))
 S = droplevels(S[-missingvalues,])
 X = droplevels(X[-missingvalues,])
 Y_Adult = Y_Adult[-missingvalues,]
-Y_Juvenile = Y_Juvenile[-missingvalues,]
+
 
 # Check for absent (0) or ubiquitous species (1) in the species data matrices.
 range(colMeans(Y_Adult>0))
 min(colSums(Y_Adult>0))
 # =0.
-
-range(colMeans(Y_Juvenile>0))
-min(colSums(Y_Juvenile>0))
 
 #Adult Y and Tr data preparation:
 # Remove rare species (5 or less observations)
