@@ -1,5 +1,4 @@
 #S7
-#setwd("/Volumes/HD_Elements/workspaceHD_Gabi_Zuquim25OCT2017/Danish project 2019/Ms.3 Palms HMSC/analysis/scripts_FULL_HMSCframework")
 
 
 storeToLocalFolder = TRUE
