@@ -1,11 +1,12 @@
 # HMSC_AmazonPalmUses
-Codes associated to the analysis used the paper "The legacy of human use in Amazonian palm communities along environmental and accessibility gradients". Global Ecology and Biogeography. In press.
+Codes associated to the analysis used the paper "The legacy of human use in Amazonian palm communities along environmental and accessibility gradients" by Gabriela Zuquim, Mirkka M. Jones, Otso Ovaskainen, William Trujillo and Henrik Balslev. Global Ecology and Biogeography. In press.
+
 Codes written by Otso Ovaskainen, Mirkka Jones and Gabriela Zuquim
 The codes were modified from November 2020 Hmsc course scripts. Current versions of these training materials are available at https://www.helsinki.fi/en/researchgroups/statistical-ecology/software/hmsc
 
 Contact person: gabriela.zuquim@utu.fi 
 
-Raw data was obtained from the sources described. Please contact the responsible partners for inquiries.
+Raw data was obtained from the sources described below. Please contact the responsible partners for inquiries.
 
 Palm data
 We obtained palm species data from inventories in 430 transects (each 500 x 5 m) collected across the study region between 1995 and 2012 (details in Balslev et al., 2019). In each transect, all palm individuals were counted and identified to the species or variety level. The original dataset was quantitative, and classified individuals into seedling, juvenile, adult, and sub-adult categories. Here, we transform the original dataset from abundance to presence-absence data. Moreover, we include only adults and sub-adults, which were combined into a single category. Juveniles and seedlings were excluded from the analysis. Vouchers of collected specimens are deposited at the Aarhus University herbarium (AAU) and in at least one herbarium in the countries of origin of the specimens (COL, QCA, AMAZ, USZ, LPB, INPA). 
