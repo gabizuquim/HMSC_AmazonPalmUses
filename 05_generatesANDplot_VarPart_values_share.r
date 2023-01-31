@@ -8,6 +8,9 @@
 #see readme file for detail
 ##################################################################################################################################################
 
+#The fitted model (models_thin_1000_samples_250_chains_4.Rdata) 
+#can be downloaded from https://etsin.fairdata.fi/dataset/46f59d1b-d925-4cf8-893e-37e50742a291
+
 library(Hmsc)
 load("models_thin_1000_samples_250_chains_4.Rdata")
 
