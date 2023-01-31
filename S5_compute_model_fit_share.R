@@ -1,6 +1,6 @@
 #S5
 #setwd("") # set directory to the folder where the folders "data", "models" and "panels" are
-#setwd("/Volumes/HD_Elements/workspaceHD_Gabi_Zuquim25OCT2017/Danish project 2019/Ms.3 Palms HMSC/analysis/scripts_FULL_HMSCframework")
+
 
 library(Hmsc)
 
