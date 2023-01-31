@@ -24,5 +24,5 @@ We recorded each palm species` types and diversity of known human uses, if any, 
 
 Phylogeny
 We obtained a genus-level phylogenetic tree based on 1000 palm phylogenies (Faurby et al., 2016; Phylogeny_Con_Checklist.nex). The original 1000 trees were reduced to include only the species of interest using the ape (Paradis & Schliep, 2019) and phytools (Revell, 2012) packages in R (R Core Team, 2020). A Maximum Clade Credibility (MCC) tree for the 1000 trees was calculated using TreeAnnotator v2.6.3 (BEAST 2 package (Bouckaert et al., 2014)). All branches with a posterior support below 95% were collapsed using TreeGraph 2 (Stöver & Müller, 2010). All MCC tree nodes showed good support at the genus level but not at the species level. We, therefore, used genus-level data in the analysis.
-![image](https://user-images.githubusercontent.com/12062535/215764278-e9010982-790e-47a3-ae71-65fb9ea05c16.png)
+
 
