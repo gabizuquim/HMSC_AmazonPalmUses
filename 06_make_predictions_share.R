@@ -1,72 +1,102 @@
-#setwd("") # set directory to the folder where the folders "data", "models" and "panels" are
 library(Hmsc)
 library(ggplot2)
+library(abind)
 
-localDir = "."
 
-#nChains = 4
-#samples = 250
-#thin = 4
+load("models_thin_1000_samples_250_chains_4.Rdata")
+m = models[[1]]
+covariates = all.vars(m$XFormula)[c(6, 8, 7, 1:5)]
+gradientnames = c("log(Soil cations)", "log(Distance to river)", "HAND", "Min. temp. coldest month", "Precipitation seasonality", "Landsat Band 3", "Landsat Band 4", "Landsat Band 7")
 
-filename = paste("models/models_thin_", as.character(thin),
-                 "_samples_", as.character(samples),
-                 "_chains_",as.character(nChains),
-                 ".Rdata",sep = "")
-load(filename)
-nm = length(models)
+col_richness = rgb(0.93,0.3,0.17)
+col_food = "cyan"
+col_material = rgb(0.67, 1, 0)
+col_medicine = rgb(1, 0.8, 0)
+col_intensity = "blue"
 
-filename =  paste("panels/predictions.pdf")
-pdf(file = filename)
-for(j in 1:nm){
-  m = models[[j]]
-  covariates = all.vars(m$XFormula)
-  ex.sp = which.max(colMeans(m$Y,na.rm = TRUE)) #most common species as example species
-  if(m$distr[1,1]==2){
-    ex.sp = which.min(abs(colMeans(m$Y,na.rm = TRUE)-0.5)) #for probit models the species with prevalence closest to 0.5
+legendfill = c(col_food, col_medicine, col_material)
+
+cicol_richness = adjustcolor(col_richness, alpha.f=0.1)
+cicol_food = adjustcolor(col_food, alpha.f=0.1)
+cicol_material = adjustcolor(col_material, alpha.f=0.1)
+cicol_medicine = adjustcolor(col_medicine, alpha.f=0.15)
+cicol_intensity = adjustcolor(col_intensity, alpha.f=0.1)
+
+maxmin = function(x){max(x)>x[1]}
+
+# Traits, Species richness vs gradients: Supplementary figure.
+
+correlations = list()
+
+pdf("TraitsRichness_per_gradient3.pdf", width = 5.5, height = 11)         
+par(mfrow = c(8, 3), mar = c(4, 4, 1, 1), mgp = c(2, 0.75, 0))
+
+for(n in 1:8)
+{
+  covariate = covariates[n]
+  gradientname = gradientnames[n]
+  Gradient2 = constructGradient(m,focalVariable = covariate,non.focalVariables = 1)
+  focalgradient = Gradient2$XDataNew[,1]
+  
+  predY2 = predict(m, Gradient = Gradient2, expected = TRUE)
+  
+  predT = lapply(predY2, function(a) (a %*% m$Tr)/matrix(rep(rowSums(a),m$nt), ncol = m$nt))
+  predT = abind(predT, along = 3)
+  qpredT = apply(predT, MARGIN = c(1, 2), quantile, probs = c(0.025, 0.5, 0.975), na.rm = TRUE)
+  
+  predS = abind(lapply(predY2, rowSums),along=2)
+  qpredS = apply(predS, c(1), quantile, probs = c(0.025, 0.5, 0.975), na.rm=TRUE)
+  
+  correlations[[n]] = round(cor(data.frame(qpredS[2,], qpredT[2,,])[, c(1, 3:6)]), 2)
+
+  lo = qpredS[1, ]
+  hi = qpredS[3, ]
+  me = qpredS[2, ]
+  
+  plot(focalgradient, me, ylim  = c(0,28), xlab = gradientname, ylab = "Species richness", cex.lab = 0.85, cex.axis = 0.7, type = "l", col = col_richness, lwd = linewidth)
+  polygon(c(focalgradient, rev(focalgradient)), c(lo, rev(hi)), col =  cicol_richness, border = FALSE)
+  
+  for(i in 1:4)
+  {
+    focaltrait = switch(i, "use_intensity", "human_food", "material", "medicine")
+    cicol = switch(i, cicol_intensity, cicol_food, cicol_material, cicol_medicine)
+    colour = switch(i, col_intensity, col_food, col_material, col_medicine)
+
+            qpredT_focal = qpredT[, , focaltrait]
+            lo = qpredT_focal[1, ]
+            hi = qpredT_focal[3, ]
+            me = qpredT_focal[2, ]
+            
+            #Pr = mean(apply(predT[, focaltrait, ], 2, maxmin))
+            #linetype = ifelse(Pr>0.95|Pr<0.05, 1, 3)
+            linetype = 1
+            linewidth = 1.5
+            
+            if(i == 1)
+            {
+              plot(focalgradient, me, ylim  = c(2,6), xlab = gradientname, ylab = "Use intensity", cex.lab = 0.85, cex.axis = 0.7, type = "l", lty = linetype, col = colour, lwd = linewidth)
+              polygon(c(focalgradient, rev(focalgradient)), c(lo, rev(hi)), col =  cicol, border = FALSE)
+            }
+            if(i == 2)
+            {
+            plot(focalgradient, me, ylim  = c(0.4,1), xlab = gradientname, ylab = "Use proportion", cex.lab = 0.85, cex.axis = 0.7, type = "l", lty = linetype, col = colour, lwd = linewidth)
+            polygon(c(focalgradient, rev(focalgradient)), c(lo, rev(hi)), col =  cicol, border = FALSE)
+            }
+            if(i > 2)
+            {
+              points(focalgradient, me, type = "l", col = colour, lwd = linewidth, lty = linetype)
+              polygon(c(focalgradient, rev(focalgradient)), c(lo, rev(hi)), col =  cicol, border = FALSE)
+            }
+            if(i == 4)
+            {
+              legend("bottomleft", legend = c("F", "Me.", "Ma."), horiz = TRUE, bty = "n", border = FALSE, fill = legendfill, cex=0.7)
+            }
   }
-  for(k in 1:(length(covariates))){
-    covariate = covariates[[k]]
-    Gradient = constructGradient(m,focalVariable = covariate)
-    Gradient2 = constructGradient(m,focalVariable = covariate,non.focalVariables = 1)
-    predY = predict(m, Gradient=Gradient, expected = TRUE)  
-    predY2 = predict(m, Gradient=Gradient2, expected = TRUE)  
-    par(mfrow=c(2,1))
-    pl = plotGradient(m, Gradient, pred=predY, yshow = 0, measure="S", showData = TRUE, 
-                      main = paste0(modelnames[[j]],": summed response (total effect)"))
-    if(inherits(pl, "ggplot")){
-      print(pl + labs(title=paste0(modelnames[[j]],": summed response (total effect)")))
-    }
-    pl = plotGradient(m, Gradient2, pred=predY2, yshow = 0, measure="S", showData = TRUE, 
-                     main = paste0(modelnames[[j]],": summed response (marginal effect)"))
-    if(inherits(pl, "ggplot")){
-     print(pl + labs(title=paste0(modelnames[[j]],": summed response (marginal effect)")))
-    }
-    par(mfrow=c(2,1))
-    pl = plotGradient(m, Gradient, pred=predY, yshow = if(m$distr[1,1]==2){c(-0.1,1.1)}else{0}, measure="Y",index=ex.sp, showData = TRUE, 
-                      main = paste0(modelnames[[j]],": example species (total effect)"))
-    if(inherits(pl, "ggplot")){
-      print(pl + labs(title=paste0(modelnames[[j]],": example species (total effect)")))
-    }
-    pl = plotGradient(m, Gradient2, pred=predY2, yshow = if(m$distr[1,1]==2){c(-0.1,1.1)}else{0}, measure="Y",index=ex.sp, showData = TRUE, 
-                    main = paste0(modelnames[[j]],": example species (marginal effect)"))
-    if(inherits(pl, "ggplot")){
-     print(pl + labs(title=paste0(modelnames[[j]],": example species (marginal effect)")))
-    }
-    if(m$nt>1){
-      for(l in 2:m$nt){
-        par(mfrow=c(2,1))
-        pl = plotGradient(m, Gradient, pred=predY, measure="T",index=l, showData = TRUE,yshow = 0,
-                          main = paste0(modelnames[[j]],": community weighted mean trait (total effect)"))
-        if(inherits(pl, "ggplot")){
-          print(pl + labs(title=paste0(modelnames[[j]],": community weighted mean trait (total effect)")))
-        }
-        pl = plotGradient(m, Gradient2, pred=predY2, measure="T",index=l, showData = TRUE, yshow = 0,
-                         main = paste0(modelnames[[j]],": community weighted mean trait (marginal effect)"))
-        if(inherits(pl, "ggplot")){
-        print(pl + labs(title=paste0(modelnames[[j]],": community weighted mean trait (marginal effect)")))
-        }
-      }
-    }
   }
-}
+
 dev.off()
+
+rich_use_cortable = data.frame(correlations[[1]][-1,1], correlations[[2]][-1,1], correlations[[3]][-1,1], correlations[[4]][-1,1], correlations[[5]][-1,1], correlations[[6]][-1,1], correlations[[7]][-1,1], correlations[[8]][-1,1])
+names(rich_use_cortable) = gradientnames
+
+write.csv2(rich_use_cortable, "rich_use_cortable.csv", row.names = F)
