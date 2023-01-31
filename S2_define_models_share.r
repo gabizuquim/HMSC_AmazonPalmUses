@@ -1,4 +1,6 @@
-#S2
+#####Codes by OO, MJ, GZ####
+#####see readme.X for details####
+
 library(Hmsc)
 load("allData.R") #S, X, Y_Adult, Y_Juvenile, Tr, P
 ####For the purpose of the paper CITE, Juvenile data was not used
