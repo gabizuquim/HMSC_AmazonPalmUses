@@ -15,4 +15,4 @@ library(Hmsc)
   {VPr$vals[,k] = R2[k]*VPr$vals[,k]}
   
 VPr_useintensity = data.frame(m$TrData$use_intensity,t(VPr$vals))
-  
+write.csv2(VPr_useintensity, "VPr_useintensity.csv")
