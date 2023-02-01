@@ -35,7 +35,6 @@ nm = length(models)
       }
     }
   }
-}
 
 par(mfrow=c(2,1))
 vioplot(ma,col=rainbow_hcl(nm),names=na,ylim=c(0,max(ma)),main="psrf(beta)")
