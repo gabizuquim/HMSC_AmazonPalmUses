@@ -11,6 +11,9 @@
 library(Hmsc)
 #For computing-time optimization, cross-validation was run on a model fitted with 10 x fewer samples than the version used in the rest of the paper.
 #To fit this model change the value of samples to 100 in script S3.
+#Models with a large number of iterations are heavy to run. The output of the spatial model 
+##fitted for the purpose of the paper associated with these code has been made open is a data repository.
+
 load(file = "models_thin_100_samples_250_chains_4.Rdata")
 
 ###WARNING!!! The below lines can take weeks to months to run in a regular computer
