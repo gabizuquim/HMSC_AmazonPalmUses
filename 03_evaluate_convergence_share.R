@@ -16,11 +16,10 @@ library("vioplot")
 install.packages("sm")
 library(sm)
 
-###Models with a large number of iterations are heavy to run. The output of the 
-###spatial model fitted for the purpose of the paper associated with these codes
-###can be accessed here https://doi.org/10.23729/9e2da5a5-5c6c-45a6-b23a-e7af08aface2
+#Models with a large number of iterations are heavy to run. The output of the spatial model 
+##fitted for the purpose of the paper associated with these code has been made open is a data repository.
 
-load("models_thin_1000_samples_250_chains_4.Rdata")
+load("models_thin_1000_samples_250_chains_4.Rdata")#object "models_thin_1000_samples_250_chains_4.Rdata" can be accessed here: https://doi.org/10.23729/9e2da5a5-5c6c-45a6-b23a-e7af08aface2
 
 mpost = convertToCodaObject(models[[1]], spNamesNumbers = c(T,F), covNamesNumbers = c(T,F))
     psrf.beta = gelman.diag(mpost$Beta,multivariate=FALSE)$psrf
