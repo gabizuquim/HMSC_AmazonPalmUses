@@ -14,7 +14,17 @@ library(Hmsc)
 #Models with a large number of iterations are heavy to run. The output of the spatial model 
 ##fitted for the purpose of the paper associated with these code has been made open is a data repository.
 
-load(file = "models_thin_100_samples_250_chains_4.Rdata")
+load(file = "models_thin_100_samples_250_chains_4.Rdata") #object "models_thin_1000_samples_250_chains_4.Rdata" 
+                                                          #can be accessed here: https://doi.org/10.23729/9e2da5a5-5c6c-45a6-b23a-e7af08aface2
+
+mpost = convertToCodaObject(models[[1]], spNamesNumbers = c(T,F), covNamesNumbers = c(T,F))
+    psrf.beta = gelman.diag(mpost$Beta,multivariate=FALSE)$psrf
+    tmp = summary(psrf.beta)
+    ma=psrf.beta[,1]
+      
+vioplot(ma,ylim=c(min(ma),max(ma)),main="psrf(beta)")
+
+
 
 ###WARNING!!! The below lines can take weeks to months to run in a regular computer
 #for shorter runs, reduce nChains, samples, thin and nfolds to smaller values, e.g. 2, 50, 1, 2, respectively.
