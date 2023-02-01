@@ -6,6 +6,11 @@ The codes were modified from November 2020 Hmsc course scripts. Current versions
 
 Contact person: gabriela.zuquim@utu.fi 
 
+Models with a large number of iterations are heavy to run in a regular computer. Code 02 is particularly slow and can take weeks or months.
+
+Therefore, input files for codes 03 onwards (models outputs fitted for the purpose of the paper) can be accessed here https://doi.org/10.23729/9e2da5a5-5c6c-45a6-b23a-e7af08aface2
+
+
 Raw data was obtained from the sources described below. Please contact the responsible partners for inquiries.
 
 Palm data
