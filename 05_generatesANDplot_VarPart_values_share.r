@@ -14,8 +14,6 @@
 library(Hmsc)
 load("models_thin_1000_samples_250_chains_4.Rdata")
 
-library(Hmsc)
-
   m = models[[1]]
   preds = computePredictedValues(m)
   VP = computeVariancePartitioning(m)
