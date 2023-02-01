@@ -14,7 +14,7 @@ library(Hmsc)
 load(file = "models_thin_100_samples_250_chains_4.Rdata")
 
 ###WARNING!!! The below lines can take weeks to months to run in a regular computer
-#for shorter runs, reduce nChains, samples, thin to smaller values, e.g. 2, 50, 1, respectively.
+#for shorter runs, reduce nChains, samples, thin and nfolds to smaller values, e.g. 2, 50, 1, 2, respectively.
 nChains = 4
 samples = 250
 thin = 100
