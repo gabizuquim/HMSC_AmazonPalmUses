@@ -65,6 +65,9 @@ for(n in 1:8)
   hi = qpredS[3, ]
   me = qpredS[2, ]
   
+  linetype = 1
+  linewidth = 1.5
+                 
   plot(focalgradient, me, ylim  = c(0,28), xlab = gradientname, ylab = "Species richness", cex.lab = 0.85, cex.axis = 0.7, type = "l", col = col_richness, lwd = linewidth)
   polygon(c(focalgradient, rev(focalgradient)), c(lo, rev(hi)), col =  cicol_richness, border = FALSE)
   
@@ -81,9 +84,7 @@ for(n in 1:8)
             
             #Pr = mean(apply(predT[, focaltrait, ], 2, maxmin))
             #linetype = ifelse(Pr>0.95|Pr<0.05, 1, 3)
-            linetype = 1
-            linewidth = 1.5
-            
+          
             if(i == 1)
             {
               plot(focalgradient, me, ylim  = c(2,6), xlab = gradientname, ylab = "Use intensity", cex.lab = 0.85, cex.axis = 0.7, type = "l", lty = linetype, col = colour, lwd = linewidth)
