@@ -12,13 +12,15 @@ library(Hmsc)
 
 load(file = "unfitted_models.Rdata")
 
-#### WARNING! The next lines can take several weeks or even months to run in a normal computer
-#### For testing the codes purposes we suggest changing the values nchains, samples and thin to 2, 50, 1, respectively
-#### Model fitting with the below settings took almost 2 weeks to run in a supercomputing center
+###########################################################################################################################
+#### WARNING! The next lines can take several weeks or even months to run in a regular computer ###########################
+#### For testing the codes purposes we suggest changing the values nchains, samples and thin to 2, 50, 1, respectively ####
+#### Model fitting with the below settings took almost 2 weeks to run in a supercomputing center ##########################
+###########################################################################################################################
 
-nChains = 4
-samples = 250
-thin = 1000
+nChains = 4 #for faster runs, edit this value
+samples = 250 #for faster runs, edit this value
+thin = 1000 #for faster runs, edit this value
 for(n in 1:1)
 {
   m = models[[n]]
