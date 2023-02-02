@@ -25,13 +25,16 @@ mpost = convertToCodaObject(models[[1]], spNamesNumbers = c(T,F), covNamesNumber
 vioplot(ma,ylim=c(min(ma),max(ma)),main="psrf(beta)")
 
 
+########################################################################################################################################
+#### WARNING! The next lines can take several weeks or even months to run in a regular computer ########################################
+#### For testing the codes, we suggest changing the values in nChains, samples, thin and nfolds to, e.g. 2, 50, 1, 2, respectively. ####
+#### Model fitting with the below settings took almost 2 weeks to run in a supercomputing center #######################################
+########################################################################################################################################
 
-###WARNING!!! The below lines can take weeks to months to run in a regular computer
-#for shorter runs, reduce nChains, samples, thin and nfolds to smaller values, e.g. 2, 50, 1, 2, respectively.
-nChains = 4
-samples = 250
-thin = 100
-nfolds = 4
+nChains = 4 #edit this value for shorter runs
+samples = 250  #edit this value for shorter runs
+thin = 100 #edit this value for shorter runs
+nfolds = 4 #edit this value for shorter runs
 
 MF = list()
 MFCV = list()
