@@ -10,8 +10,8 @@
 
 #Import environmental covariate values for all grid cells across the Amazonian study region.
 #Gridded file can be obtained from IDA data repository (see next line)
-
-grid = fread("gridded_WAamazonian_predictorsV2.csv") #"gridded_WAamazonian_predictorsV2.csv" can be accessed here: 
+library(data.table)
+grid = fread("gridded_WAamazonian_predictors.csv") #"gridded_WAamazonian_predictors.csv" can be accessed here: 
                                                       #https://doi.org/10.23729/9e2da5a5-5c6c-45a6-b23a-e7af08aface2
 
 mpost = convertToCodaObject(models[[1]], spNamesNumbers = c(T,F), covNamesNumbers = c(T,F))
