@@ -58,9 +58,9 @@ m = models[[1]]
 m$XData = m$XData[, c("Chelsa150_bio6", "Chelsa150_bio15", "Band3_median15", "Band4_median15", "Band7_median15", "soilfern", "log.HAND_50")]
 
 #Predictions are generated row by row (by Y coordinate) across the Amazonian regional predictor grid.
-############################################################################################
-#### WARNING! The next lines will take SEVERAL hours to run in a regular computer ##########
-############################################################################################
+##################################################################################################
+#### WARNING! The next lines will take SEVERAL hours to few days to run in a regular computer ####
+##################################################################################################
 uniqueY = unique(grid$y)
 
 predictions = data.frame(matrix(nrow = nrow(grid), ncol = ncol(m$Y)+2))
