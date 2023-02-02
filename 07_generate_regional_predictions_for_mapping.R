@@ -9,7 +9,19 @@
 ##################################################################################################################################################
 
 #Import environmental covariate values for all grid cells across the Amazonian study region.
-grid = fread("gridded_WAamazonian_predictorsV2.csv")
+#Gridded file can be obtained from IDA data repository (see next line)
+
+grid = fread("gridded_WAamazonian_predictorsV2.csv") #"gridded_WAamazonian_predictorsV2.csv" can be accessed here: 
+                                                      #https://doi.org/10.23729/9e2da5a5-5c6c-45a6-b23a-e7af08aface2
+
+mpost = convertToCodaObject(models[[1]], spNamesNumbers = c(T,F), covNamesNumbers = c(T,F))
+    psrf.beta = gelman.diag(mpost$Beta,multivariate=FALSE)$psrf
+    tmp = summary(psrf.beta)
+    ma=psrf.beta[,1]
+      
+vioplot(ma,ylim=c(min(ma),max(ma)),main="psrf(beta)")
+
+
 
 # Thin the Amazonian regional environmental predictor grid by taking every fourth x and y coordinate in the original grid 
 # before making Hmsc predictions of species occurrence probabilities per cell computationally feasible.
