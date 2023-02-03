@@ -116,3 +116,5 @@ predictions = cbind(predS, predT[,-1], predictions)
 
 # Save data for mapping (Fig. 3), etc.
 fwrite(predictions, "Palm_Predicted_Occurrence_Probabilities_WA.csv")
+
+#final maps presented in Figure 3 were created in QGIS
