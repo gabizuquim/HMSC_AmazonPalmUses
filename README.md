@@ -1,7 +1,8 @@
 # HMSC_AmazonPalmUses
 Codes associated to the analysis used the paper "The legacy of human use in Amazonian palm communities along environmental and accessibility gradients" by Gabriela Zuquim, Mirkka M. Jones, Otso Ovaskainen, William Trujillo and Henrik Balslev. Global Ecology and Biogeography. In press.
 
-Codes written by Otso Ovaskainen, Mirkka Jones and Gabriela Zuquim
+Codes written by Otso Ovaskainen, Mirkka Jones and Gabriela Zuquim. 
+DOI: 10.5281/zenodo.7683941
 The codes were modified from November 2020 Hmsc course scripts. Current versions of these training materials are available at https://www.helsinki.fi/en/researchgroups/statistical-ecology/software/hmsc
 
 Contact person: gabriela.zuquim@utu.fi 
