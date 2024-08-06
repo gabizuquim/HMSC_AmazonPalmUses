@@ -1,5 +1,5 @@
 #################################################################################################################################################
-# Codes associated with the analyses presented in the paper 
+# These codes are associated with the analyses presented in the paper 
 # "The legacy of human use in Amazonian palm communities along environmental and accessibility gradients". 
 # Global Ecology and Biogeography. https://onlinelibrary.wiley.com/doi/full/10.1111/geb.13667
 # Codes by Otso Ovaskainen, Mirkka Jones and Gabriela Zuquim
